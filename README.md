@@ -7,11 +7,19 @@ This management should happen smoothly taking into account the conflict resoluti
 inter teams as well.
 
 ##### Set up instructions:
+- Download the project and set up any IDE like IntelliJ
+- Set up the mysql data base as per the schema given in the links section
+- To run the application, set the configuration one time as below
 
+> Run -> Edit configurations -> click on + button on the left-hand side -> Select Application-> 
+> Give name like CAPM application, click apply and OK
 
-##### Specification link: https://docs.google.com/document/d/1wIU316BLzo8iBPr1KTzI5kMiKyyP2QXEQK5AfWCy5cM/edit?usp=sharing
-##### Schema: [schema.sql](https://github.com/deepakjayaprakash/CAPM/blob/master/src/main/resources/schema.sql)
-##### API doc, sample request/response: 
+In the VM options bar enter: ```-Dspring.profiles.active=local```
+
+##### Important Links and documents
+- Specification link: https://docs.google.com/document/d/1wIU316BLzo8iBPr1KTzI5kMiKyyP2QXEQK5AfWCy5cM/edit?usp=sharing
+- Schema: [schema.sql](https://github.com/deepakjayaprakash/CAPM/blob/master/src/main/resources/schema.sql)
+- API doc, sample request/response: 
  
 
 
