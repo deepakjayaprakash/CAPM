@@ -10,7 +10,7 @@ inter teams as well.
 
 
 ##### Specification link: https://docs.google.com/document/d/1wIU316BLzo8iBPr1KTzI5kMiKyyP2QXEQK5AfWCy5cM/edit?usp=sharing
-##### Schema: 
+##### Schema: [schema.sql](https://github.com/deepakjayaprakash/CAPM/blob/master/src/main/resources/schema.sql)
 ##### API doc, sample request/response: 
  
 
