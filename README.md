@@ -6,5 +6,13 @@ control over limiting the overall population in the office on a given day.
 This management should happen smoothly taking into account the conflict resolution of preferences within a team and 
 inter teams as well.
 
-Spec link: https://docs.google.com/document/d/1wIU316BLzo8iBPr1KTzI5kMiKyyP2QXEQK5AfWCy5cM/edit?usp=sharing
+##### Set up instructions:
+
+
+##### Specification link: https://docs.google.com/document/d/1wIU316BLzo8iBPr1KTzI5kMiKyyP2QXEQK5AfWCy5cM/edit?usp=sharing
+##### Schema: 
+##### API doc, sample request/response: 
+ 
+
+
 
