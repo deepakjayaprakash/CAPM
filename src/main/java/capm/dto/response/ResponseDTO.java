@@ -10,6 +10,6 @@ import java.io.Serializable;
 @Data
 public class ResponseDTO implements Serializable {
     private static final long serialVersionUID = -3800336684834821929L;
-    private MetaData meta;
+    private MetaDataDTO meta;
     private Object data;
 }

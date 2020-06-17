@@ -1,5 +1,8 @@
 package capm.model.mysql;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 /**
@@ -7,6 +10,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "employee")
+@Getter
+@Setter
 public class EmployeeEntity extends BasicAudit {
 
     @Id
