@@ -44,6 +44,7 @@ public class CRUDController {
         ResponseDTO responseDTO = new ResponseDTO();
         try {
             crudFacade.createNewTeam(teamRequest);
+
         } catch (Exception e) {
             log.error("exception_in_test_api", e);
         }
