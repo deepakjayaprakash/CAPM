@@ -23,7 +23,7 @@ UNIQUE KEY `config_name` (`config_name`)
 CREATE TABLE `team` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
 `team_name` varchar(40) NOT NULL,
-`manager_id` bigint(20) NOT NULL,
+`manager_id` bigint(20) DEFAULT NULL,
 `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
 `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 PRIMARY KEY (`id`),

@@ -1,6 +1,5 @@
 package capm.service;
 
-import capm.model.mysql.ManagerEntity;
 import capm.model.mysql.TeamEntity;
 import capm.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,18 +15,18 @@ public class TeamService {
     private TeamRepository teamRepository;
 
     public TeamEntity getTeamWithId(Long id) {
-        TeamEntity teamEntity = new TeamEntity();
+        TeamEntity teamEntity = teamRepository.getById(id);
         return teamEntity;
     }
 
-    public TeamEntity buildNewTeam(String name, ManagerEntity managerEntity) {
+    public TeamEntity buildNewTeam(String name) {
         TeamEntity teamEntity = new TeamEntity();
         teamEntity.setTeamName(name);
-        teamEntity.setManagerEntity(managerEntity);
         return teamEntity;
     }
 
-    public void save(TeamEntity teamEntity) {
-        teamRepository.save(teamEntity);
+    public TeamEntity save(TeamEntity teamEntity) {
+        teamEntity = teamRepository.save(teamEntity);
+        return teamEntity;
     }
 }

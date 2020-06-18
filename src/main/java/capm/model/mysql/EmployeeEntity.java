@@ -16,7 +16,7 @@ public class EmployeeEntity extends BasicAudit {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "name")
@@ -28,4 +28,8 @@ public class EmployeeEntity extends BasicAudit {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")
     private TeamEntity teamEntity;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "manager_id")
+    private ManagerEntity managerEntity;
 }

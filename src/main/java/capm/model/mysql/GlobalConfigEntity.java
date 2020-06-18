@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class GlobalConfigEntity extends BasicAudit {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "config_name")

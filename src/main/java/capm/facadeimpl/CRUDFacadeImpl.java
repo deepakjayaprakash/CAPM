@@ -35,18 +35,23 @@ public class CRUDFacadeImpl implements CRUDFacade {
         if (teamEntity == null) {
             throw new ApplicationException(ReturnCode.EC_002);
         }
+        ManagerEntity managerEntity;
+        if (createEmployeeRequest.getAccessLevel() != null) {
+            managerEntity = managerService.createManager();
+            managerService.save(managerEntity);
+            teamEntity.setManagerEntity(managerEntity);
+            teamService.save(teamEntity);
+        } else {
+            managerEntity = teamEntity.getManagerEntity();
+        }
         EmployeeEntity employeeEntity = employeeService.buildNewEmployee(createEmployeeRequest.getName(),
-                createEmployeeRequest.getCode(), teamEntity);
+                createEmployeeRequest.getCode(), teamEntity, managerEntity);
         employeeService.save(employeeEntity);
     }
 
     @Override
     public void createNewTeam(CreateTeamRequest createTeamRequest) throws ApplicationException {
-        ManagerEntity managerEntity = managerService.getManagerWithId(createTeamRequest.getManagerId());
-        if (managerEntity == null) {
-            throw new ApplicationException(ReturnCode.EC_003);
-        }
-        TeamEntity teamEntity = teamService.buildNewTeam(createTeamRequest.getName(), managerEntity);
+        TeamEntity teamEntity = teamService.buildNewTeam(createTeamRequest.getName());
         teamService.save(teamEntity);
     }
 }
