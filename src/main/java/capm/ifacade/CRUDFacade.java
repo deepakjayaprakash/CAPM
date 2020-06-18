@@ -10,5 +10,5 @@ import capm.exceptions.ApplicationException;
 public interface CRUDFacade {
     public void createNewEmployee(CreateEmployeeRequest createEmployeeRequest) throws ApplicationException;
 
-    void createNewTeam(CreateTeamRequest teamRequest);
+    void createNewTeam(CreateTeamRequest teamRequest) throws ApplicationException;
 }
