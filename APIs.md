@@ -17,7 +17,7 @@ curl --location --request POST 'localhost:8080/capm/createNewEmployee' \
     "accessLevel": "MANAGER"
 }'
 
-3. Create new employee
+Create new employee
 
 curl --location --request POST 'localhost:8080/capm/createNewEmployee' \
 --header 'Content-Type: application/json' \
