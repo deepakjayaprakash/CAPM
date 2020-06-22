@@ -31,4 +31,8 @@ public class EmployeeService {
         employeeEntity = employeeRepository.save(employeeEntity);
         log.info("employee_saved id: {}", employeeEntity.getId());
     }
+
+    public EmployeeEntity getEmployeeById(long id) {
+        employeeRepository.findById(id);
+    }
 }

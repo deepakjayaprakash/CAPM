@@ -19,12 +19,15 @@ public class TeamEntity extends BasicAudit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "manager_id")
     private ManagerEntity managerEntity;
 
     @Column(name = "team_name")
     private String teamName;
+
+    @Column(name = "size")
+    private Integer size;
 
     @Override
     public String toString() {

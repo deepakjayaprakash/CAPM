@@ -14,6 +14,8 @@ import capm.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 /**
  * @author deepak.jayaprakash
  */
@@ -40,10 +42,13 @@ public class CRUDFacadeImpl implements CRUDFacade {
             managerEntity = managerService.createManager();
             managerService.save(managerEntity);
             teamEntity.setManagerEntity(managerEntity);
-            teamService.save(teamEntity);
         } else {
             managerEntity = teamEntity.getManagerEntity();
         }
+        int size = Optional.ofNullable(teamEntity.getSize()).orElse(0);
+        teamEntity.setSize(size + 1);
+        teamService.save(teamEntity);
+
         EmployeeEntity employeeEntity = employeeService.buildNewEmployee(createEmployeeRequest.getName(),
                 createEmployeeRequest.getCode(), teamEntity, managerEntity);
         employeeService.save(employeeEntity);

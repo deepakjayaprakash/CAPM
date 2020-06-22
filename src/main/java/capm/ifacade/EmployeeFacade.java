@@ -1,5 +1,6 @@
 package capm.ifacade;
 
+import capm.dto.request.PunchInRequest;
 import capm.dto.response.ResponseDTO;
 
 /**
@@ -7,4 +8,6 @@ import capm.dto.response.ResponseDTO;
  */
 public interface EmployeeFacade {
     ResponseDTO getDatesForEmployee();
+
+    void punchInPreference(PunchInRequest punchInRequest);
 }

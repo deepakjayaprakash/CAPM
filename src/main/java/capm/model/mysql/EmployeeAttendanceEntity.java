@@ -23,7 +23,7 @@ public class EmployeeAttendanceEntity extends BasicAudit {
     @Column(name = "date_list")
     private String dateList;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "employee_id")
     private EmployeeEntity employeeEntity;
 }
