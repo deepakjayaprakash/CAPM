@@ -30,6 +30,13 @@ public class EmployeeFacadeImpl implements EmployeeFacade {
     @Override
     public void punchInPreference(PunchInRequest punchInRequest) {
         EmployeeEntity employeeEntity = employeeService.getEmployeeById(punchInRequest.getEmployeeId());
-        DateWiseAttendanceEntity dateAttendance = dateWiseAttendanceService.getDateWiseAttendance(punchInRequest.getDate());
+        DateWiseAttendanceEntity dateAttendance = dateWiseAttendanceService.getDateWiseAttendance(punchInRequest.getDate(),
+                employeeEntity.getTeamEntity().getId());
+        if (dateAttendance == null) {
+            dateAttendance = dateWiseAttendanceService.createNewDateEntity(punchInRequest.getDate(),
+                    employeeEntity.getTeamEntity());
+            dateWiseAttendanceService.save(dateAttendance);
+        }
+
     }
 }

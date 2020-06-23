@@ -14,7 +14,7 @@ import java.util.Date;
  * @author deepak.jayaprakash
  */
 @Repository
-public interface DateWiseRepository extends JpaRepository<DateWiseAttendanceEntity, Long>, JpaSpecificationExecutor<DateWiseAttendanceEntity>,
+public interface GlobalConfigRepository extends JpaRepository<DateWiseAttendanceEntity, Long>, JpaSpecificationExecutor<DateWiseAttendanceEntity>,
         CrudRepository<DateWiseAttendanceEntity, Long> {
 
     @Query(value = "from DateWiseAttendanceEntity d where d.date = :date and d.teamEntity.id = :teamId")

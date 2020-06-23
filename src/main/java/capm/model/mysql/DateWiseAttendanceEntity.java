@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * @author deepak.jayaprakash
@@ -22,7 +23,10 @@ public class DateWiseAttendanceEntity extends BasicAudit {
     @Column(name = "employee_list")
     private String employeeList;
 
+    @Column(name = "date")
+    private Date date;
+
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "teamId")
+    @JoinColumn(name = "team_id")
     private TeamEntity teamEntity;
 }
