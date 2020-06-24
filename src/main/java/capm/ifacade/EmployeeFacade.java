@@ -2,6 +2,7 @@ package capm.ifacade;
 
 import capm.dto.request.PunchInRequest;
 import capm.dto.response.ResponseDTO;
+import capm.exceptions.ApplicationException;
 
 /**
  * @author deepak.jayaprakash
@@ -9,5 +10,5 @@ import capm.dto.response.ResponseDTO;
 public interface EmployeeFacade {
     ResponseDTO getDatesForEmployee();
 
-    void punchInPreference(PunchInRequest punchInRequest);
+    void punchInPreference(PunchInRequest punchInRequest) throws ApplicationException;
 }

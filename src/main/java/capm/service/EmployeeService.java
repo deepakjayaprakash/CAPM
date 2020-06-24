@@ -33,6 +33,6 @@ public class EmployeeService {
     }
 
     public EmployeeEntity getEmployeeById(long id) {
-        employeeRepository.findById(id);
+        return employeeRepository.getEmployeeById(id);
     }
 }
