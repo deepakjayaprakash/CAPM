@@ -1,5 +1,6 @@
 package capm.facadeimpl;
 
+import capm.dto.internal.DateList;
 import capm.dto.internal.EmployeeList;
 import capm.dto.request.PunchInRequest;
 import capm.dto.response.ResponseDTO;
@@ -7,14 +8,19 @@ import capm.enums.ReturnCode;
 import capm.exceptions.ApplicationException;
 import capm.ifacade.EmployeeFacade;
 import capm.model.mysql.DateWiseAttendanceEntity;
+import capm.model.mysql.EmployeeAttendanceEntity;
 import capm.model.mysql.EmployeeEntity;
 import capm.service.ConfigService;
 import capm.service.DateWiseAttendanceService;
+import capm.service.EmployeeAttendanceService;
 import capm.service.EmployeeService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.application.Application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author deepak.jayaprakash
@@ -31,11 +37,13 @@ public class EmployeeFacadeImpl implements EmployeeFacade {
     @Autowired
     private ConfigService configService;
 
+    @Autowired
+    private EmployeeAttendanceService employeeAttendanceService;
+
     @Override
     public ResponseDTO getDatesForEmployee() {
         return null;
     }
-
 
     @Override
     public void punchInPreference(PunchInRequest punchInRequest) throws ApplicationException {
@@ -52,9 +60,16 @@ public class EmployeeFacadeImpl implements EmployeeFacade {
             if (employeeList.getIdList().size() >= limit) {
                 throw new ApplicationException(ReturnCode.EC_002);
             } else {
+                employeeList.getIdList().add(employeeEntity.getId());
+                dateAttendance.setEmployeeList(dateWiseAttendanceService.getEmployeeList(employeeList));
+                dateWiseAttendanceService.save(dateAttendance);
 
+                EmployeeAttendanceEntity ea = employeeAttendanceService.getEmployeeAttendanceEntity(employeeEntity.getId());
+                DateList dateList = employeeAttendanceService.getDateList(ea.getDateList());
+                dateList.getDateList().add(punchInRequest.getDate());
+                ea.setDateList(employeeAttendanceService.getDateList(dateList));
+                employeeAttendanceService.save(ea);
             }
         }
-
     }
 }

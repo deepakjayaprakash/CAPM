@@ -43,4 +43,8 @@ public class DateWiseAttendanceService {
         String employeeListString = dateAttendance.getEmployeeList();
         return objectMapper.convertValue(employeeListString, EmployeeList.class);
     }
+
+    public String getEmployeeList(EmployeeList employeeList) {
+        return objectMapper.convertValue(employeeList, String.class);
+    }
 }
