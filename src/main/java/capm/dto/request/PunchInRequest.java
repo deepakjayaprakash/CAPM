@@ -1,5 +1,6 @@
 package capm.dto.request;
 
+import capm.enums.PunchInType;
 import lombok.Data;
 
 import java.util.Date;
@@ -11,4 +12,5 @@ import java.util.Date;
 public class PunchInRequest {
     private Long employeeId;
     private Date date;
+    private PunchInType punchInType;
 }
