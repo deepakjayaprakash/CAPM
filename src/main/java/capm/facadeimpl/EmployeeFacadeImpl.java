@@ -3,6 +3,7 @@ package capm.facadeimpl;
 import capm.dto.internal.DateList;
 import capm.dto.internal.EmployeeList;
 import capm.dto.request.PunchInRequest;
+import capm.dto.response.EmpPrefDao;
 import capm.dto.response.ResponseDTO;
 import capm.enums.PunchInType;
 import capm.enums.ReturnCode;
@@ -37,11 +38,6 @@ public class EmployeeFacadeImpl implements EmployeeFacade {
     private EmployeeAttendanceService employeeAttendanceService;
 
     @Override
-    public ResponseDTO getDatesForEmployee() {
-        return null;
-    }
-
-    @Override
     public void punchInPreference(PunchInRequest punchInRequest) throws ApplicationException {
         EmployeeEntity employeeEntity = employeeService.getEmployeeById(punchInRequest.getEmployeeId());
         DateWiseAttendanceEntity dateAttendance = dateWiseAttendanceService.getDateWiseAttendance(punchInRequest.getDate(),
@@ -58,6 +54,18 @@ public class EmployeeFacadeImpl implements EmployeeFacade {
                 handleRemovePreference(punchInRequest, employeeEntity, dateAttendance, employeeList);
             }
         }
+    }
+
+    @Override
+    public EmpPrefDao getEmployeePreference(Long id) {
+        EmployeeAttendanceEntity employeeAttendanceEntity = employeeAttendanceService.getEmployeeAttendanceEntity(id);
+        EmpPrefDao empPrefDao = null;
+        if (employeeAttendanceEntity != null)  {
+            empPrefDao = new EmpPrefDao();
+            empPrefDao.setId(employeeAttendanceEntity.getId());
+            empPrefDao.setDateList(employeeAttendanceService.getDateList(employeeAttendanceEntity.getDateList()));
+        }
+        return empPrefDao;
     }
 
     private void handleRemovePreference(PunchInRequest punchInRequest, EmployeeEntity employeeEntity

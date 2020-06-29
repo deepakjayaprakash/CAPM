@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.websocket.server.PathParam;
+
 /**
  * @author deepak.jayaprakash
  */
@@ -31,6 +33,21 @@ public class PreferenceController {
         ResponseDTO responseDTO = new ResponseDTO();
         try {
             employeeFacade.punchInPreference(punchInRequest);
+        } catch (Exception e) {
+            log.error("exception_in_test_api", e);
+        }
+        MetaDataDTO metaDataDTO = MetaDataDTO.builder().returnCode(ReturnCode.SC_001).build();
+        responseDTO.setMeta(metaDataDTO);
+        log.info("test_api_response: {}", responseDTO);
+        return responseDTO;
+    }
+
+
+    @PostMapping(value = "/get-employee-preference/id", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseDTO getEmployeePreference(@PathParam(value = "id") Long id) {
+        ResponseDTO responseDTO = new ResponseDTO();
+        try {
+            responseDTO.setData(employeeFacade.getEmployeePreference(id));
         } catch (Exception e) {
             log.error("exception_in_test_api", e);
         }
