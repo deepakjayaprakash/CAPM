@@ -42,12 +42,26 @@ public class PreferenceController {
         return responseDTO;
     }
 
-
     @PostMapping(value = "/get-employee-preference/id", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseDTO getEmployeePreference(@PathParam(value = "id") Long id) {
         ResponseDTO responseDTO = new ResponseDTO();
         try {
             responseDTO.setData(employeeFacade.getEmployeePreference(id));
+        } catch (Exception e) {
+            log.error("exception_in_test_api", e);
+        }
+        MetaDataDTO metaDataDTO = MetaDataDTO.builder().returnCode(ReturnCode.SC_001).build();
+        responseDTO.setMeta(metaDataDTO);
+        log.info("test_api_response: {}", responseDTO);
+        return responseDTO;
+    }
+
+    @PostMapping(value = "/get-employees-on-date/date/teamId", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseDTO getEmployeesOnDate(@PathParam(value = "date") String date, @PathParam(value = "teamId")
+            Long teamId) {
+        ResponseDTO responseDTO = new ResponseDTO();
+        try {
+            responseDTO.setData(employeeFacade.getEmployeesOnDate(date, teamId));
         } catch (Exception e) {
             log.error("exception_in_test_api", e);
         }

@@ -4,7 +4,7 @@ import capm.dto.internal.DateList;
 import capm.dto.internal.EmployeeList;
 import capm.dto.request.PunchInRequest;
 import capm.dto.response.EmpPrefDao;
-import capm.dto.response.ResponseDTO;
+import capm.dto.response.EmployeesOnDateResponse;
 import capm.enums.PunchInType;
 import capm.enums.ReturnCode;
 import capm.exceptions.ApplicationException;
@@ -16,8 +16,12 @@ import capm.service.ConfigService;
 import capm.service.DateWiseAttendanceService;
 import capm.service.EmployeeAttendanceService;
 import capm.service.EmployeeService;
+import capm.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.text.ParseException;
+import java.util.Date;
 
 /**
  * @author deepak.jayaprakash
@@ -60,12 +64,20 @@ public class EmployeeFacadeImpl implements EmployeeFacade {
     public EmpPrefDao getEmployeePreference(Long id) {
         EmployeeAttendanceEntity employeeAttendanceEntity = employeeAttendanceService.getEmployeeAttendanceEntity(id);
         EmpPrefDao empPrefDao = null;
-        if (employeeAttendanceEntity != null)  {
+        if (employeeAttendanceEntity != null) {
             empPrefDao = new EmpPrefDao();
             empPrefDao.setId(employeeAttendanceEntity.getId());
             empPrefDao.setDateList(employeeAttendanceService.getDateList(employeeAttendanceEntity.getDateList()));
         }
         return empPrefDao;
+    }
+
+    @Override
+    public EmployeesOnDateResponse getEmployeesOnDate(String dateString, Long teamId) throws ParseException {
+        EmployeesOnDateResponse employeesOnDateResponse = new EmployeesOnDateResponse();
+        Date date = DateUtil.convertStringToDate(dateString);
+        DateWiseAttendanceEntity dateWiseAttendanceEntity = dateWiseAttendanceService.getDateWiseAttendance(date, teamId);
+        return employeesOnDateResponse;
     }
 
     private void handleRemovePreference(PunchInRequest punchInRequest, EmployeeEntity employeeEntity
